@@ -14,7 +14,8 @@ A training set should comprise of:
 1. Positive images: these images should contain only the object you are trying to detect
 2. Negative images: these images can contain anything except for the object you are detecting
 
-I have provided a link for the Inria dataset - for human detection but this code can be adapted for other datasets too i.e. car detection.
+Web link for the Inria dataset is shown below - the dataset is for pedestrian detection but this code can be adapted for other datasets too eg. car detection (dataset link: http://cogcomp.org/Data/Car/)
+Inria dataset link: http://pascal.inrialpes.fr/data/human/
 
 The files are divided into the following:
 Training & Testing (this is where you evaluate your trained classifier)
