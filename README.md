@@ -17,5 +17,4 @@ A training set should comprise of:
 I have provided a link for the Inria dataset - for human detection but this code can be adapted for other datasets too i.e. car detection.
 
 The files are divided into the following:
-Training, Testing (this is where you evaluate your trained classifier) and a separate file for functions has also been created. The functions
-include: sliding window 
+Training & Testing (this is where you evaluate your trained classifier)
