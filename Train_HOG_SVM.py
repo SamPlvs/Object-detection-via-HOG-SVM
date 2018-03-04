@@ -82,3 +82,8 @@ model.fit(trainData, trainLabels)
 print(" Evaluating classifier on test data ...")
 predictions = model.predict(testData)
 print(classification_report(testLabels, predictions))
+
+
+# Save the model:
+#%% Save the Model
+joblib.dump(model, 'model_name.npy')
