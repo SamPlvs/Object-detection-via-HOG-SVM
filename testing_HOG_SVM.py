@@ -83,6 +83,6 @@ cv2.imshow("Raw Detections after NMS", img)
 if k == 27:             #wait for ESC key to exit
     cv2.destroyAllWindows()
 elif k == ord('s'):
-    cv2.imwrite('E:\\Drone_Video\\V1framesx_10_processed\\scene00271.png',img)
+    cv2.imwrite('Path\to_the_directory\of_saved_image.png',img)
     cv2.destroyAllWindows()
 
