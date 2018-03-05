@@ -8,7 +8,7 @@ This process is implemented in python, the following libraries are required:
 3. OpenCV (for testing)
 4. PIL (Image processing library)
 5. Numpy (matrix multiplication)
-6. __ for Non-maximum suppression
+6. Imutils for Non-maximum suppression
 
 A training set should comprise of:
 1. Positive images: these images should contain only the object you are trying to detect
