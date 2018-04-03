@@ -14,8 +14,6 @@ import glob
 orientations = 9
 pixels_per_cell = (8, 8)
 cells_per_block = (2, 2)
-visualize = False
-normalize = True
 threshold = .3
 
 # define the sliding window:
@@ -50,7 +48,7 @@ for resized in pyramid_gaussian(img, downscale=1.5): # loop over each layer of t
         if window.shape[0] != winH or window.shape[1] !=winW: # ensure the sliding window has met the minimum size requirement
             continue
         window=color.rgb2gray(window)
-        fds = hog(window, orientations, pixels_per_cell, cells_per_block, visualize, normalize)  # extract HOG features from the window captured
+        fds = hog(window, orientations, pixels_per_cell, cells_per_block, block_norm='L2')  # extract HOG features from the window captured
         fds = fds.reshape(1, -1) # re shape the image to make a silouhette of hog
         pred = model.predict(fds) # use the SVM model to make a prediction on the HOG features extracted from the window
         
@@ -68,7 +66,7 @@ for (x_tl, y_tl, _, w, h) in detections:
     cv2.rectangle(img, (x_tl, y_tl), (x_tl + w, y_tl + h), (0, 0, 255), thickness = 2)
 rects = np.array([[x, y, x + w, y + h] for (x, y, _, w, h) in detections]) # do nms on the detected bounding boxes
 sc = [score[0] for (x, y, score, w, h) in detections]
-print "sc: ", sc
+print("sc: ", sc)
 sc = np.array(sc)
 pick = non_max_suppression(rects, probs = sc, overlapThresh = 0.3)
 
