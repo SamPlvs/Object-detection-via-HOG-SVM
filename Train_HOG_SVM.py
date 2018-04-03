@@ -23,8 +23,6 @@ from numpy import *
 orientations = 9
 pixels_per_cell = (8, 8)
 cells_per_block = (2, 2)
-visualize = False
-normalize = True
 threshold = .3
 
 
@@ -51,7 +49,7 @@ for file in pos_im_listing: #this loop enables reading the files in the pos_im_l
     #img = img.resize((64,128))
     gray = img.convert('L') # convert the image into single channel i.e. RGB to grayscale
     # calculate HOG for positive features
-    fd = hog(gray, orientations, pixels_per_cell, cells_per_block, visualize, normalize, feature_vector=True)
+    fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm='L2', feature_vector=True)# fd= feature descriptor
     data.append(fd)
     labels.append(1)
     
@@ -61,7 +59,7 @@ for file in neg_im_listing:
     #img = img.resize((64,128))
     gray= img.convert('L')
     # Now we calculate the HOG for negative features
-    fd = hog(gray, orientations, pixels_per_cell, cells_per_block, visualize, normalize, feature_vector=True) # fd= feature descriptor
+    fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm='L2', feature_vector=True) 
     data.append(fd)
     labels.append(0)
 # encode the labels, converting them from strings to integers
