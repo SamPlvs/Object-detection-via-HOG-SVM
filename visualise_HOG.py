@@ -11,8 +11,8 @@ from skimage.feature import hog
 from skimage import data, color, exposure
 from PIL import Image
 #%%
-img = io.imread(r"E:\Documents\Cardiff University (MedEng)\Year 4 Study\Mechatronics Design Project\SVM_dataset_latest\pos_images_mine\83.jpg")
-#im= Image.open(r"E:\Documents\Cardiff University (MedEng)\Year 4 Study\Mechatronics Design Project\SVM_dataset_latest\pos_images_mine\1.jpg")
+img = io.imread(r"Insert\Image\Path\Here.jpg")
+#im= Image.open(r"Insert\Image\Path\Here.jpg")
 image = color.rgb2gray(img)
 
 fd, hog_image = hog(image, orientations=8, pixels_per_cell=(16, 16),
