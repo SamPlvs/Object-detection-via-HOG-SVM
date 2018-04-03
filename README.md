@@ -18,3 +18,6 @@ Web link for the Inria dataset is shown below - the dataset is for pedestrian de
 
 The files are divided into the following:
 Training & Testing (this is where you evaluate your trained classifier)
+Visualise Hog: simply allows you to see what the gradients calculated look like on a given image (specified by the user).
+
+The results of HOG detector are as follows: Normal (RGB image)> HOG descriptors > SVM classification
