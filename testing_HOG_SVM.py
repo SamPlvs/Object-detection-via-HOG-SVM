@@ -19,8 +19,8 @@ threshold = .3
 # define the sliding window:
 def sliding_window(image, stepSize, windowSize):# image is the input, step size is the no.of pixels needed to skip and windowSize is the size of the actual window
     # slide a window across the image
-    for y in xrange(0, image.shape[0], stepSize):# this line and the line below actually defines the sliding part and loops over the x and y coordinates
-        for x in xrange(0, image.shape[1], stepSize):
+    for y in range(0, image.shape[0], stepSize):# this line and the line below actually defines the sliding part and loops over the x and y coordinates
+        for x in range(0, image.shape[1], stepSize):
             # yield the current window
             yield (x, y, image[y: y + windowSize[1], x:x + windowSize[0]])
 #%%
@@ -34,9 +34,9 @@ detections = []
 img= cv2.imread("Insert\Path\of_the_image\here")
 
 # Try it with image resized if the image is too big
-img= cv2.resize(img,(300,300)) # can change the size to default by commenting this code out our put in a random number
+img= cv2.resize(img,(300,200)) # can change the size to default by commenting this code out our put in a random number
 
-# defining the size of the sliding window (same as the size of the image in the training data)
+# defining the size of the sliding window (has to be, same as the size of the image in the training data)
 (winW, winH)= (64,128)
 windowSize=(winW,winH)
 downscale=1.5
@@ -54,8 +54,8 @@ for resized in pyramid_gaussian(img, downscale=1.5): # loop over each layer of t
         
         if pred == 1:
             if model.decision_function(fds) > 0.6:  # set a threshold value for the SVM prediction i.e. only firm the predictions above probability of 0.6
-                print "Detection:: Location -> ({}, {})".format(x, y)
-                print "Scale ->  {} | Confidence Score {} \n".format(scale,model.decision_function(fds))
+                print("Detection:: Location -> ({}, {})".format(x, y))
+                print("Scale ->  {} | Confidence Score {} \n".format(scale,model.decision_function(fds)))
                 detections.append((int(x * (downscale**scale)), int(y * (downscale**scale)), model.decision_function(fds),
                                    int(windowSize[0]*(downscale**scale)), # create a list of all the predictions found
                                       int(windowSize[1]*(downscale**scale))))
@@ -66,12 +66,14 @@ for (x_tl, y_tl, _, w, h) in detections:
     cv2.rectangle(img, (x_tl, y_tl), (x_tl + w, y_tl + h), (0, 0, 255), thickness = 2)
 rects = np.array([[x, y, x + w, y + h] for (x, y, _, w, h) in detections]) # do nms on the detected bounding boxes
 sc = [score[0] for (x, y, score, w, h) in detections]
-print("sc: ", sc)
+print("detection confidence score: ", sc)
 sc = np.array(sc)
 pick = non_max_suppression(rects, probs = sc, overlapThresh = 0.3)
 
- #the peice of code above creates a raw bounding box prior to using NMS
+# the peice of code above creates a raw bounding box prior to using NMS
 # the code below creates a bounding box after using nms on the detections
+# you can choose which one you want to visualise, as you deem fit... simply use the following function:
+# cv2.imshow in this right place (since python is procedural it will go through the code line by line).
         
 for (xA, yA, xB, yB) in pick:
     cv2.rectangle(img, (xA, yA), (xB, yB), (0,255,0), 2)
