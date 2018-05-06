@@ -29,3 +29,7 @@ After classifying with a trained SVM model and applying NMS the following result
 Note The results are better when the background is not cluttered (shown below). As seen from the original and the extracted HOG image, majority of the gradients binned come from the background (this could be due to the training set not being robust to more greener/cluttered background as shown in the test)
 
 ![image](https://user-images.githubusercontent.com/35964759/38281107-e92f8d60-37a0-11e8-951b-d1d316460386.png)
+
+This method is also robust to different poses and presence of multiple subjects as shown in the figure below where an image from google was shown to the webcam
+![svm_robust](https://user-images.githubusercontent.com/35964759/39673857-9c4452a6-513b-11e8-8e64-42b55e23c200.png)
+
