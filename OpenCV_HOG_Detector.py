@@ -2,6 +2,9 @@
 
 import numpy as np
 import cv2
+import sys
+from glob import glob
+import itertools as it
 
 def inside(r, q):
     rx, ry, rw, rh = r
@@ -14,11 +17,6 @@ def draw_detections(img, rects, thickness = 1):
         # so we slightly shrink the rectangles to get a nicer output.
         pad_w, pad_h = int(0.15*w), int(0.05*h)
         cv2.rectangle(img, (x+pad_w, y+pad_h), (x+w-pad_w, y+h-pad_h), (0, 0, 255), thickness)
-
-import sys
-from glob import glob
-import itertools as it
-
 
 hog = cv2.HOGDescriptor()
 hog.setSVMDetector( cv2.HOGDescriptor_getDefaultPeopleDetector() )
